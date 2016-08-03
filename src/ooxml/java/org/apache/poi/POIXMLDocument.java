@@ -34,6 +34,7 @@ import org.apache.poi.openxml4j.opc.PackageRelationship;
 import org.apache.poi.openxml4j.opc.PackageRelationshipCollection;
 import org.apache.poi.poifs.common.POIFSConstants;
 import org.apache.poi.util.IOUtils;
+import org.apache.xmlbeans.impl.common.SystemCache;
 
 public abstract class POIXMLDocument extends POIXMLDocumentPart{
     public static final String DOCUMENT_CREATOR = "Apache POI";
@@ -55,6 +56,8 @@ public abstract class POIXMLDocument extends POIXMLDocumentPart{
     protected POIXMLDocument(OPCPackage pkg) {
         super(pkg);
         this.pkg = pkg;
+
+        SystemCache.get().setSaxLoader(null);
     }
 
     /**

@@ -29,7 +29,6 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.Namespace;
 import org.dom4j.QName;
-import org.dom4j.io.SAXReader;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.PackageNamespaces;
 import org.apache.poi.openxml4j.opc.PackagePart;
@@ -38,6 +37,7 @@ import org.apache.poi.openxml4j.opc.ZipPackage;
 import org.apache.poi.openxml4j.opc.internal.PackagePropertiesPart;
 import org.apache.poi.openxml4j.opc.internal.PartUnmarshaller;
 import org.apache.poi.openxml4j.opc.internal.ZipHelper;
+import org.apache.poi.util.SAXHelper;
 
 /**
  * Package properties unmarshaller.
@@ -118,10 +118,9 @@ public final class PackagePropertiesUnmarshaller implements PartUnmarshaller {
 						"Error while trying to get the part input stream.");
 		}
 
-		SAXReader xmlReader = new SAXReader();
 		Document xmlDoc;
 		try {
-			xmlDoc = xmlReader.read(in);
+			xmlDoc = SAXHelper.readSAXDocument(in);
 
 			/* Check OPC compliance */
 
